@@ -1,0 +1,88 @@
+<div class="container">
+  <br><br><br><br><br><br>
+  <div class="row">
+
+    <form class="border border-light p-5" #messageForm="ngForm" (ngSubmit)="onSendClick(messageForm)">
+
+      <div class="row">
+        <div class="col-md-1">
+          <p class="h4 mb-4">From:</p>
+        </div>
+        <div class="col-md-11">
+          <p class="h4 mb-4">{{ loggedInUser }} </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+          <p class="h4 mb-4">To: </p>
+        </div>
+        <div class="col-md-11">
+          <input class="form-control rounded-0"
+                 list="recipientOptions"
+                 id="recipient"
+                 placeholder="Type to search for the recipient"
+                 ngModel
+                 name="recipient"
+                 required >
+          <datalist id="recipientOptions">
+            <option *ngFor="let recipient of recipients" value="{{ recipient }}">
+          </datalist>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-1">
+          <p class="h4 mb-4">Title: </p>
+        </div>
+        <div class="col-md-11">
+          <input class="form-control rounded-0"
+                 id="title"
+                 placeholder="Title"
+                 ngModel
+                 name="title"
+                 required >
+        </div>
+      </div>
+
+      <br>
+      <textarea class="form-control rounded-0"
+                id="message"
+                rows="4"
+                placeholder="Message"
+                ngModel
+                name="message"
+                required></textarea>
+      <br>
+      <button class="btn btn-info btn-block"
+              type="submit" >Send</button>
+    </form>
+
+  </div>
+
+  <div class="row border border-light p-5">
+
+    <div class="col-md-12">
+
+      <div class="row" *ngIf="messages.length > 0">
+          <p class="h4 mb-4">Received messages:</p>
+      </div>
+
+      <ul class="list-group list-group-light" *ngFor="let m of messages">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+            <div class="fw-bold">{{m.sender.name}} - {{ m.title }}</div>
+            <div class="text-muted">{{m.body}}</div>
+          </div>
+<!--          <span class="badge rounded-pill badge-success">Active</span>-->
+        </li>
+      </ul>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
