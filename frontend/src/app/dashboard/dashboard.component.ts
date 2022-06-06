@@ -54,7 +54,8 @@ export class DashboardComponent implements OnInit {
 
   onSendClick(form: NgForm) {
     this.dashboardService.saveMessage(this.loggedInUser, form.value.recipient, form.value.title, form.value.message);
-    form.resetForm();
+    alert("The email is sent.\nScroll DOWN TO SEE RECEIVED MESSAGE");
+    this.fetchMessages();
   }
 
 }
